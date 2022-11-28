@@ -57,7 +57,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group mb-3">
                                                 <div class="avatar">
-                                                    <img class="avatar-img" alt="User Image" src="{{ asset($edit_data->thumbnail) }}">
+                                                    <img class="avatar-img" alt="User Image" src="{{ asset(get_path($edit_data->thumbnail)) }}">
                                                 </div>
                                             </div>
                                         </div>

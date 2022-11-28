@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <a href="{{ url('/') }}" class="navbar-brand mb-2">
-                    <img src="{{ asset('storage/logo.webp') }}" alt="logo" class="img-fluid">
+                    <img src="{{ asset(get_path('logo.png')) }}" alt="logo" class="logo">
                 </a>
                 <br>
                 <p>{!! $general['about_text'] !!}</p>
@@ -48,7 +48,7 @@
             <div class="row">
                 <div class="col-md-6 col-lg-7">
                     <div class="copyright-wrap small-text">
-                        <p class="mb-0">{{ $general['copyright_text'] }}</p>
+                        <p class="mb-0">{{ $general['copyright_text'] .' Developed by ' }}<a href="https://github.com/ashik-ahmed-dev" target="_blank" class="color-primary">Ashik Ahmed</a></p>
                     </div>
                 </div>
             </div>

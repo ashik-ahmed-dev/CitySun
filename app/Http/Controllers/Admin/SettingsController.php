@@ -42,13 +42,11 @@ class SettingsController extends Controller
 
     public function logo_update(Request $request){
         if ($request->file('logo')) {
-            $images_one = $request->file('logo');
-            Image::make($images_one)->resize(200,60)->save(public_path('storage/logo.webp'));
+            $request->file('logo')->storeAs('', 'logo.png', 'public');
             return redirect()->route('admin.settings.general')->with('success','data updated successfully');
         }
         if ($request->file('favicon')) {
-            $images_one = $request->file('favicon');
-            Image::make($images_one)->resize(96,96)->save(public_path('storage/favicon.webp'));
+            $request->file('favicon')->storeAs('', 'favicon.png', 'public');
             return redirect()->route('admin.settings.general')->with('success','data updated successfully');
         }else{
             return redirect()->route('admin.settings.general')->with('error','data not updated');
@@ -79,13 +77,11 @@ class SettingsController extends Controller
 
     public function images_upload(Request $request){
         if ($request->hasFile('about')) {
-            $images_one = $request->file('about');
-            Image::make($images_one)->resize(750,750)->save(public_path('storage/images/about.webp'));
+            $request->file('about')->storeAs('', 'about.png', 'public');
             return redirect()->route('admin.web-settings')->with('success','data updated successfully');
         }
         if ($request->hasFile('featured')) {
-            $images_one = $request->file('featured');
-            Image::make($images_one)->resize(750,500)->save(public_path('storage/images/featured.webp'));
+            $request->file('featured')->storeAs('', 'featured.png', 'public');
             return redirect()->route('admin.web-settings')->with('success','data updated successfully');
         }
     }

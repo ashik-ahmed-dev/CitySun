@@ -87,12 +87,12 @@
                 <div class="form-group">
                     <label for="logo">@lang('logo 250x100')</label>
                     <input type="file" class="form-control" name="logo">
-                    <img src="{{ asset('storage/logo.webp') }}" alt=""  style="height: 50px; width: auto">
+                    <img src="{{ asset(get_path('logo.png')) }}" alt=""  style="height: 50px; width: auto">
                 </div>
                 <div class="form-group">
                     <label for="link_text">@lang('favicon 32x32')</label>
                     <input type="file" class="form-control" name="favicon">
-                    <img src="{{ asset('storage/favicon.webp') }}" alt="favicon" style="height: 50px; width: auto">
+                    <img src="{{ asset(get_path('favicon.png')) }}" alt="favicon" style="height: 50px; width: auto">
                 </div>
                 <div class="text-right">
                     <button type="submit" class="btn btn-block btn-primary">@lang('Submit')</button>

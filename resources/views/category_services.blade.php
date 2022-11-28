@@ -23,7 +23,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="single-blog-card card gray-light-bg border-0 shadow-sm my-3">
                         <div class="blog-img position-relative">
-                            <img src="{{ asset($service->thumbnail) }}" class="card-img-top" alt="blog">
+                            <img src="{{ asset(get_path($service->thumbnail)) }}" class="card-img-top" alt="">
                         </div>
                         <div class="card-body">
                             <h3 class="h5 mb-2 card-title"><a href="{{ route('service_detail', $service->slug) }}">{{ $service->name }}</a></h3>

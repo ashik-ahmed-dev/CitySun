@@ -8,7 +8,7 @@
     @else
         <title></title>
     @endif
-    <link rel="icon" href="{{ asset('storage/favicon.webp') }}" type="image/png">
+    <link rel="icon" href="{{ asset(get_path('favicon.png')) }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fonts/line-awesome/css/line-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/datatables.min.css') }}">

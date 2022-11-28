@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class TestimonialController extends Controller
@@ -24,17 +24,16 @@ class TestimonialController extends Controller
             'comments' => 'required',
         ]);
 
-        $image = $request->file('photo_link');
-        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(80,80)->save(public_path('storage/testi/'.$name_gen));
-        $save_url = 'storage/testi/'.$name_gen;
-
-        Testimonial::insert([
-            'name' => $request->name,
-            'title' => $request->title,
-            'photo_link' => $save_url,
-            'comments' => $request->comments,
-        ]);
+        $data = new Testimonial();
+        $data->name = $request->name;
+        $data->title = $request->title;
+        $data->comments = $request->comments;
+        if ($request->hasFile('photo_link')){
+            $image = $request->file('photo_link')->store('testi', 'public');
+            Image::make(Storage::disk('public')->path($image))->resize(80, 80)->save();
+            $data->photo_link = $image;
+        }
+        $data->save();
         return redirect()->back()->with('success','data saved successfully');
     }
 
@@ -43,42 +42,31 @@ class TestimonialController extends Controller
         return view('admin.testimonial.update', compact('testi'));
     }
 
-    public function update(Request $request){
-        $id = $request->id;
-        $old_img = $request->old_image;
+    public function update(Request $request, $id){
 
-        if ($request->file('photo_link')) {
-            $image = $request->file('photo_link');
-            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(80,80)->save(public_path('storage/testi/'.$name_gen));
-            $save_url = 'storage/testi/'.$name_gen;
-            if (File::exists($old_img)) {
-                unlink($old_img);
+        $data = Testimonial::findOrFail($id);
+        $data->name = $request->name;
+        $data->title = $request->title;
+        $data->comments = $request->comments;
+        if ($request->hasFile('photo_link')){
+            if (Storage::disk('public')->exists($data->photo_link)) {
+                Storage::disk('public')->delete($data->photo_link);
             }
-            Testimonial::findOrFail($id)->update([
-                'name' => $request->name,
-                'title' => $request->title,
-                'photo_link' => $save_url,
-                'comments' => $request->comments,
-            ]);
-            return redirect()->route('admin.testimonial')->with('success','data updated successfully');
-        }else{
-            Testimonial::findOrFail($id)->update([
-                'name' => $request->name,
-                'title' => $request->title,
-                'comments' => $request->comments,
-            ]);
-            return redirect()->route('admin.testimonial')->with('success','data updated successfully');
-        } // end else
+            $image = $request->file('photo_link')->store('testi', 'public');
+            Image::make(Storage::disk('public')->path($image))->resize(80, 80)->save();
+            $data->photo_link = $image;
+        }
+        $data->update();
+
+        return redirect()->route('admin.testimonial')->with('success','data updated successfully');
     }
 
     public function delete($id){
-        $testi = Testimonial::findOrFail($id);
-        $old_img = $testi->photo_link;
-        if (File::exists($old_img)) {
-            unlink($old_img);
+        $data = Testimonial::findOrFail($id);
+        $data->delete();
+        if (Storage::disk('public')->exists($data->photo_link)) {
+            Storage::disk('public')->delete($data->photo_link);
         }
-        Testimonial::findOrFail($id)->delete();
         return redirect()->back()->with('success','Data deleted Successfully');
     }
 }

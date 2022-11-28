@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Settings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class SliderController extends Controller
@@ -18,9 +19,8 @@ class SliderController extends Controller
             'title' => 'required',
             'subtitle' => 'required',
         ]);
-        if ($request->hasFile('image')) {
-            $images_one = $request->file('image');
-            Image::make($images_one)->resize(750,750)->save(public_path('storage/slider.webp'));
+        if ($request->hasFile('image')){
+            $request->file('image')->storeAs('', 'slider.png', 'public');
             return redirect()->back()->with('success','data updated successfully');
         }
 

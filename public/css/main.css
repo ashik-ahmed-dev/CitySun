@@ -36,7 +36,9 @@ body {
 ol, ul {
     list-style: none;
 }
-
+img.logo {
+    height: 60px;
+}
 
 blockquote, q {
     quotes: none;

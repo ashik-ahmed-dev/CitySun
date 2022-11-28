@@ -8,6 +8,8 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 class ServicesController extends Controller
@@ -33,23 +35,21 @@ class ServicesController extends Controller
             'thumbnail' => 'required',
         ]);
 
+        $service = new Service();
+        $service->name = $request->name;
+        $service->slug = Str::slug($request->name);
+        $service->category_id  = $request->category_id;
+        $service->short_text = $request->short_text;
+        $service->description = $request->description;
+        $service->price = $request->price;
+        $service->discount_price = $request->discount_price;
+
         if($request->hasFile('thumbnail')) {
-            $image = $request->file('thumbnail');
-            $name_gen = hexdec(uniqid());
-            Image::make($image)->resize(750, 500)->save(public_path('storage/services/'.$name_gen .'.webp'), 60);
-            $images_path = 'storage/services/'.$name_gen .'.webp';
+            $image = $request->file('thumbnail')->store('services', 'public');
+            Image::make(Storage::disk('public')->path($image))->resize(750, 500)->save();
+            $service->thumbnail = $image;
         }
-        Service::insert([
-            'name' => $request->name,
-            'slug' => str_slug($request->name),
-            'category_id' => $request->category_id,
-            'short_text' => $request->short_text,
-            'description' => $request->description,
-            'price' => $request->price,
-            'discount_price' => $request->discount_price,
-            'thumbnail' => $images_path,
-            'created_at' => Carbon::now()
-        ]);
+        $service->save();
         return redirect()->route('admin.service')->with('success','data saved successfully');
     }
 
@@ -62,44 +62,39 @@ class ServicesController extends Controller
     }
 
     public function update(Request $request, $id){
-        $old_thumbnail = Service::findOrFail($id);
-        if ($request->hasFile('thumbnail')) {
-            $old_thumbnail = $old_thumbnail->old_thumbnail;
-            if (File::exists($old_thumbnail)) {
-                unlink($old_thumbnail);
-            }
-            $image = $request->file('thumbnail');
-            $name_gen = hexdec(uniqid());
-            Image::make($image)->resize(750, 500)->save(public_path('storage/services/'.$name_gen .'.webp'), 60);
-            $old_thumbnail = 'storage/services/'.$name_gen .'.webp';
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+        ]);
+        $data = Service::findOrFail($id);
+        $data->name = $request->name;
+        $data->slug = Str::slug($request->name);
+        $data->category_id  = $request->category_id;
+        $data->short_text = $request->short_text;
+        $data->description = $request->description;
+        $data->price = $request->price;
+        $data->discount_price = $request->discount_price;
 
-            Service::findOrFail($id)->update([
-                'thumbnail' => $old_thumbnail,
-            ]);
-            return redirect()->route('admin.service')->with('success','data saved successfully');
-        }else{
-            Service::findOrFail($id)->update([
-                'name' => $request->name,
-                'slug' => str_slug($request->name),
-                'category_id' => $request->category_id,
-                'short_text' => $request->short_text,
-                'description' => $request->description,
-                'price' => $request->price,
-                'discount_price' => $request->discount_price,
-            ]);
-            return redirect()->route('admin.service')->with('success','data saved successfully');
-        } // end else
+        if ($request->hasFile('thumbnail')){
+            if (Storage::disk('public')->exists($data->thumbnail)) {
+                Storage::disk('public')->delete($data->thumbnail);
+            }
+            $image = $request->file('thumbnail')->store('services', 'public');
+            Image::make(Storage::disk('public')->path($image))->resize(750, 590)->save();
+            $data->thumbnail = $image;
+        }
+        $data->update();
+        return redirect()->route('admin.service')->with('success','data saved successfully');
     }
 
     public function delete($id){
-        Service::findOrFail($id)->delete();
+        $data = Service::findOrFail($id);
+        if (Storage::disk('public')->exists($data->thumbnail)) {
+            Storage::disk('public')->delete($data->thumbnail);
+        }
         return redirect()->back()->with('success','Data deleted Successfully');
     }
-
-
-
-
-
-
 
 }

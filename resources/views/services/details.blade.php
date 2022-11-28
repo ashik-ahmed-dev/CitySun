@@ -25,7 +25,7 @@
                     <article class="post pr-5">
                         <div class="post-preview">
                             <a href="#">
-                                <img src="{{ asset($service->thumbnail) }}" alt="blog" />
+                                <img src="{{ asset(get_path($service->thumbnail)) }}" alt="" />
                             </a>
                         </div>
                         <div class="post-wrapper">

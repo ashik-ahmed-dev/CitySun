@@ -41,7 +41,7 @@
         </div>
         <div class="col-md-6 d-flex">
             <div class="card flex-fill bg-white">
-                <img src="{{ asset($testi->photo_link) }}" alt="Card Image" style="height: 100%;">
+                <img src="{{ asset(get_path($testi->photo_link)) }}" alt="Card Image" style="height: 100%;">
             </div>
         </div>
     </div>

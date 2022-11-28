@@ -22,7 +22,7 @@
                             @foreach($testi as $row)
                                 <tr>
                                     <td>
-                                        <img src="{{ asset($row->photo_link) }}" alt="{{ $row->name }}" width="40">
+                                        <img src="{{ asset(get_path($row->photo_link)) }}" alt="{{ $row->name }}" width="40">
                                     </td>
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->title }}</td>

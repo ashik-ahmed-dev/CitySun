@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--favicon icon-->
-    <link rel="icon" href="{{ asset('storage/favicon.webp') }}" type="image/png">
+    <link rel="icon" href="{{ asset(get_path('favicon.png')) }}" type="image/png">
     <!--title-->
     <title>{{ $general['site_title'] }}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/toastr/toastr.min.css') }}">
@@ -25,7 +25,7 @@
 <!--preloader start-->
 <div id="preloader">
     <div class="preloader-wrap">
-        <img src="{{ asset('storage/logo.webp') }}" alt="logo" class="img-fluid" />
+        <img src="{{ asset(get_path('logo.png')) }}" alt="logo" class="img-fluid" />
     </div>
 </div>
 <!--preloader end-->

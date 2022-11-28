@@ -5,13 +5,13 @@
 <header class="header">
     <div class="header-left">
         <a href="{{ route('admin.dashboard') }}" class="logo">
-            <img src="{{ asset('storage/logo.webp') }}" alt="Logo">
+            <img src="{{ asset(get_path('logo.png')) }}" alt="Logo">
         </a>
         <a href="{{ route('admin.dashboard') }}" class="white-logo">
-            <img src="{{ asset('storage/favicon.webp') }}" alt="Logo">
+            <img src="{{ asset(get_path('favicon.png')) }}" alt="Logo">
         </a>
         <a href="{{ route('admin.dashboard') }}" class="logo logo-small">
-            <img src="{{ asset('storage/favicon.webp') }}" alt="Logo" width="30" height="30">
+            <img src="{{ asset(get_path('favicon.png')) }}" alt="Logo" width="30" height="30">
         </a>
     </div>
     <a href="javascript:void(0);" id="toggle_btn">

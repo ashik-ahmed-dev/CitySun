@@ -22,7 +22,7 @@
                             @foreach($categories as $category)
                                 <tr>
                                     <td class="table-avatar">
-                                        <img class="avatar-img" src="{{ asset($category->icon) }}" alt="User Image" height="64px">
+                                        <img class="avatar-img" src="{{ asset(get_path($category->icon)) }}" alt="User Image" height="64px">
                                     </td>
                                     <td>{{ $category->name }}</td>
                                     <td>{{ $category->created_at->format('d F, Y') }}</td>

@@ -24,7 +24,7 @@
                                 @foreach($services as $row)
                                     <tr>
                                         <td class="table-avatar">
-                                            <img class="avatar-img" src="{{ asset($row->thumbnail) }}" alt="User Image" height="64px">
+                                            <img class="avatar-img" src="{{ asset(get_path($row->thumbnail)) }}" alt="User Image" height="64px">
                                         </td>
                                         <td>{{ $row->name }}</td>
                                         <td>

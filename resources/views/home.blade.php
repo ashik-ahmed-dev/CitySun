@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-md-6 col-lg-6">
                     <div class="img-wrap">
-                        <img src="{{ asset('storage/slider.webp') }}" alt="hero" class="img-fluid">
+                        <img src="{{ asset(get_path('slider.png')) }}" alt="hero" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                         <div class="col-12 col-sm-3 col-md-6 col-lg-3 pb-4">
                             <div class="single-service-promo bg-white text-center border">
                                 <a href="{{ route('category.services',$category->slug ) }}" class="d-flex align-items-center justify-content-center">
-                                    <img src="{{ asset($category->icon) }}" alt="" style="height: 80px; width: auto">
+                                    <img src="{{ asset(get_path($category->icon)) }}" alt="" style="height: 80px; width: auto">
                                 </a>
                                 <h3><a href="{{ route('category.services',$category->slug ) }}">{{ $category->name }}</a></h3>
                             </div>
@@ -91,7 +91,7 @@
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-6">
                     <div class="about-content-right">
-                        <img src="{{ asset('storage/images/about.webp') }}" alt="about us" class="img-fluid">
+                        <img src="{{ asset(get_path('about.png')) }}" alt="about us" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -167,7 +167,7 @@
 
                 <div class="col-md-6 col-lg-6">
                     <div class="about-content-right">
-                        <img src="{{ asset('storage/images/featured.webp') }}" alt="about us" class="img-fluid">
+                        <img src="{{ asset(get_path('featured.png')) }}" alt="about us" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -196,7 +196,7 @@
                                 <div class="single-review-wrap gray-light-bg p-5 my-3">
                                     <div class="review-top d-flex align-items-center justify-content-between mb-3">
                                         <div class="review-author d-flex align-items-center">
-                                            <img src="{{ asset($list->photo_link) }}" width="50" alt="{{ $list->name }}" class="rounded-circle border shadow-sm img-fluid mr-3" />
+                                            <img src="{{ asset(get_path($list->photo_link)) }}" width="50" alt="{{ $list->name }}" class="rounded-circle border shadow-sm img-fluid mr-3" />
                                             <div class="review-info">
                                                 <h6 class="mb-0">{{ $list->name }}</h6>
                                                 <span>{{ $list->title }}</span>

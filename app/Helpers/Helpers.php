@@ -22,6 +22,11 @@ if (!function_exists('slug') ) {
     }
 }
 
+if (!function_exists('get_path') ) {
+    function get_path($value) {
+        return \Illuminate\Support\Facades\Storage::disk('public')->url($value);
+    }
+}
 
 
 if (!function_exists('short_text') ) {

@@ -94,7 +94,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="avatar avatar-lg">
-                                        <img class="avatar-img" src="{{ asset('storage/images/about.webp') }}" alt="User Image">
+                                        <img class="avatar-img" src="{{ asset(get_path('about.png')) }}" alt="User Image">
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="avatar avatar-lg">
-                                        <img class="avatar-img" src="{{ asset('storage/images/featured.webp') }}" alt="User Image">
+                                        <img class="avatar-img" src="{{ asset(get_path('featured.png')) }}" alt="User Image">
                                     </div>
                                 </div>
                             </div>

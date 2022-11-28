@@ -40,7 +40,7 @@
 
                         <div class="col-lg-4">
                             <div class="card flex-fill bg-white">
-                                <img alt="Card Image" src="{{ asset('storage/slider.webp') }}" class="card-img-top">
+                                <img alt="Card Image" src="{{ asset(get_path('slider.png')) }}" class="card-img-top">
                             </div>
                         </div>
                     </div>
