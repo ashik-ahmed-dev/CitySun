@@ -17,7 +17,7 @@ class DomainCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->getSchemeAndHttpHost() == 'http://127.0.0.1:8000') {
+        if ($request->getSchemeAndHttpHost() == config('app.domain')) {
             return $next($request);
         }else {
             return Redirect::to('http://heera.it');
