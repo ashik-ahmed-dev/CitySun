@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'ShurjoWeb';
+    src: url('ShurjoWeb-Regular.eot');
+    src: url('ShurjoWeb-Regular.eot?#iefix') format('embedded-opentype'),
+        url('ShurjoWeb-Regular.woff2') format('woff2'),
+        url('ShurjoWeb-Regular.woff') format('woff'),
+        url('ShurjoWeb-Regular.svg#ShurjoWeb-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ShurjoWeb';
+    src: url('ShurjoWeb-Bold.eot');
+    src: url('ShurjoWeb-Bold.eot?#iefix') format('embedded-opentype'),
+        url('ShurjoWeb-Bold.woff2') format('woff2'),
+        url('ShurjoWeb-Bold.woff') format('woff'),
+        url('ShurjoWeb-Bold.svg#ShurjoWeb-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
