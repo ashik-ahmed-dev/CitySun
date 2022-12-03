@@ -16,7 +16,7 @@
     </section>
 
 
-    <!--blog section start-->
+    <!--posts section start-->
     <div class="module ptb-100">
         <div class="container">
             <div class="row justify-content-center">
@@ -118,7 +118,7 @@
             </div>
         </div>
     </div>
-    <!--blog section end-->
+    <!--posts section end-->
 
     <script>
         'use strict';

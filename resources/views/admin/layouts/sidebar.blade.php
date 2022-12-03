@@ -8,6 +8,10 @@
                     <a href="{{ route('admin.dashboard') }}"><i class="las la-home"></i><span>@lang('Dashboard')</span></a>
                 </li>
 
+                <li class="{{ (request()->is('admin/posts/all')) ? 'active' : '' }}">
+                    <a href="{{ route('admin.posts') }}"><i class="las la-tag"></i> <span>@lang('Posts')</span></a>
+                </li>
+
                 <li class="{{ (request()->is('admin/category')) ? 'active' : '' }}">
                     <a href="{{ route('admin.category') }}"><i class="las la-tag"></i> <span>@lang('Category')</span></a>
                 </li>
@@ -49,17 +53,10 @@
                     <a href="{{ route('admin.testimonial') }}"><i class="lar la-sun"></i> <span>@lang('Testimonial')</span></a>
                 </li>
 
-                <li class="{{ (request()->is('admin/general')) ? 'active' : '' }}">
-                    <a href="{{ route('admin.settings.general') }}"><i class="las la-history"></i> <span>@lang('Settings')</span></a>
-                </li>
-
-                <li class="{{ (request()->is('admin/web-settings')) ? 'active' : '' }}">
-                    <a href="{{ route('admin.web-settings') }}"><i class="las la-tag"></i> <span>@lang('Web Settings')</span></a>
-                </li>
-
                 <li class="submenu">
-                    <a href="javascript:void(0)"><i class="las la-cog"></i><span> @lang('Web Settings') </span> <span class="menu-arrow"></span></a>
+                    <a href="javascript:void(0)"><i class="las la-cog"></i><span> @lang('Settings') </span> <span class="menu-arrow"></span></a>
                     <ul>
+                        <li><a href="{{ route('admin.settings.general') }}" class="{{ (request()->is('admin/general')) ? 'active' : '' }}" >@lang('General')</a></li>
                         <li><a href="{{ route('admin.web-setting.about') }}" class="{{ (request()->is('admin/web-setting/about')) ? 'active' : '' }}" >@lang('About page')</a></li>
                         <li><a href="{{ route('admin.web-setting.terms') }}" class="{{ (request()->is('admin/web-setting/terms')) ? 'active' : '' }}" >@lang('Terms & Conditions')</a></li>
                         <li><a href="{{ route('admin.web-setting.privacy') }}" class="{{ (request()->is('admin/web-setting/privacy')) ? 'active' : '' }}">@lang('Privacy & Policy')</a></li>

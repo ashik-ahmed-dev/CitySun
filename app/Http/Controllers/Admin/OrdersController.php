@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exports\OrdersExport;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Service;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -121,12 +121,14 @@ class OrdersController extends Controller
 
     public function print($id){
         $order = Order::with('service')->where('id',$id)->first();
-        return view('admin.invoice.order_invoice', compact('order'));
+        return view('admin.orders.invoice', compact('order'));
     }
 
 
-    public function export(){
-        return (new OrdersExport)->download('invoices.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+    public function pdf_download($id){
+        $order = Order::with('service')->where('id',$id)->first();
+        $pdf = Pdf::loadView('admin.orders.pdf', compact('order'));
+        return $pdf->download('invoice.pdf');
     }
 
 }

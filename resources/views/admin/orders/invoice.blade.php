@@ -23,11 +23,11 @@
 <table width="100%" style="background: #F7F7F7; padding:0 20px 0 20px;">
     <tr>
         <td valign="top">
-            <img src="{{ asset('storage/logo.webp') }}" alt="logo">
+            <img src="{{ asset(get_path('logo.png')) }}" alt="logo">
         </td>
         <td align="right">
             <pre class="font" >
-               {{ $general['site_name'] }}
+               Citysun Limited
                Email:{{ $general['email'] }} <br>
                Mobile: {{ $general['phone'] }} <br>
                {{ $general['address'] }} <br>
@@ -74,7 +74,7 @@
 
     <tr class="font">
         <td align="center">
-            <img src="{{ asset($order->service->thumbnail) }}" height="60px;" width="60px;" alt="">
+            <img src="{{ asset(get_path($order->service->thumbnail)) }}" height="60px;" width="60px;" alt="">
         </td>
         <td align="center">{{ $order->service->name }}</td>
         <td align="center">{{ $order->note }}</td>

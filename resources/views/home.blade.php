@@ -14,28 +14,6 @@
                     <div class="hero-content-left pt-5">
                         <h1 class="font-weight-bold">{{ $slider['title'] }}</h1>
                         <p class="lead">{{ $slider['subtitle'] }}</p>
-                        <div class="action-btns mt-4">
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <a href="#" class="d-flex align-items-center app-download-btn btn btn-outline-brand-02 btn-rounded">
-                                        <span class="fab fa-apple icon-size-sm mr-3"></span>
-                                        <div class="download-text text-left">
-                                            <small>Download form</small>
-                                            <h5 class="mb-0">App Store</h5>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="d-flex align-items-center app-download-btn btn btn-outline-brand-02 btn-rounded">
-                                        <span class="fab fa-google-play icon-size-sm mr-3"></span>
-                                        <div class="download-text text-left">
-                                            <small>Download form</small>
-                                            <h5 class="mb-0">Google Play</h5>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6">
@@ -182,8 +160,8 @@
                 <div class="col-md-9 col-lg-8">
                     <div class="section-heading text-center mb-4">
                         <h6 class="text-uppercase color-accent mb-1">Client Review</h6>
-                        <h2>{{ $web_setting['testi_title'] }}</h2>
-                        <p>{!! $web_setting['testi_subtitle'] !!}</p>
+                        <h2>Real Happy Customers, Real Stories</h2>
+                        <p>Professional hosting at an affordable price. Distinctively recaptiualize principle-centered core competencies through client-centered core competencies.</p>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,7 @@ use App\Mail\OrderSend;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Order;
+use App\Models\Post;
 use App\Models\Service;
 use App\Models\Subscriber;
 use App\Models\Testimonial;
@@ -59,7 +60,7 @@ class HomeController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        Mail::to($order->email)->queue(new OrderSend($order));
+        //Mail::to($order->email)->queue(new OrderSend($order));
 
         return redirect()->back()->with('success','your Order has been send successfully');
     }
@@ -126,6 +127,15 @@ class HomeController extends Controller
     }
 
 
+    public function posts(){
+        $title = 'Our posts';
+        $posts = Post::latest()->paginate(6);
+        return view('posts', compact('title', 'posts'));
+    }
 
+    public function single_post($slug){
+        $post = Post::where('slug',$slug)->first();
+        return view('single_post', compact('post'));
+    }
 
 }

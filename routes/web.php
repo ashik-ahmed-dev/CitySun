@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\PagesController;
+use App\Http\Controllers\Admin\PostsController;
 use App\Http\Controllers\Admin\ServicesController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\SliderController;
@@ -42,6 +43,14 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::post('/profile/update', [AdminController::class, 'profile_store'])->name('profile.update');
     Route::post('/change/password', [AdminController::class, 'change_password'])->name('change.password');
 
+    // Posts route
+    Route::get('/posts/all', [PostsController::class, 'index'])->name('posts');
+    Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
+    Route::post('/posts/store', [PostsController::class, 'store'])->name('posts.store');
+    Route::get('/posts/edit/{id}', [PostsController::class, 'edit'])->name('posts.edit');
+    Route::post('/posts/update/{id}', [PostsController::class, 'update'])->name('posts.update');
+    Route::get('/posts/delete/{id}', [PostsController::class, 'destroy'])->name('posts.delete');
+
     // admin category route
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
@@ -64,7 +73,6 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::get('/order/delete/{id}', [OrdersController::class, 'delete'])->name('order.delete');
     Route::get('/order/pending', [OrdersController::class, 'pending'])->name('order.pending');
 
-    Route::get('/export', [OrdersController::class, 'export'])->name('export');
 
     Route::get('/order/approved', [OrdersController::class, 'approved'])->name('order.approved');
     Route::get('/order/approved/update/{id}', [OrdersController::class, 'approved_update'])->name('order.approved.update');
@@ -72,6 +80,8 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::get('/order/running/update/{id}', [OrdersController::class, 'running_update'])->name('order.running.update');
     Route::get('/order/closed', [OrdersController::class, 'closed'])->name('order.closed');
     Route::get('/order/print/{id}', [OrdersController::class, 'print'])->name('order.print');
+    Route::get('/order/pdf/{id}', [OrdersController::class, 'pdf_download'])->name('order.pdf');
+
 
     Route::get('/slider', [SliderController::class, 'index'])->name('slider');
     Route::post('/slider/update', [SliderController::class, 'update'])->name('slider.update');
@@ -85,11 +95,7 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
 
     Route::get('/settings/general', [SettingsController::class, 'general'])->name('settings.general');
     Route::post('/settings/general/update', [SettingsController::class, 'general_update'])->name('setting.general.update');
-    Route::post('/settings/logo_update', [SettingsController::class, 'logo_update'])->name('settings.logo_update');
-
-    Route::get('/web-settings', [SettingsController::class, 'web_settings'])->name('web-settings');
-    Route::post('/web-settings/update', [SettingsController::class, 'web_setting_update'])->name('web-settings.update');
-    Route::post('/web-settings/image-upload', [SettingsController::class, 'images_upload'])->name('web-settings.image-upload');
+    Route::post('/settings/image_update', [SettingsController::class, 'image_update'])->name('settings.image_update');
 
     Route::get('web-setting/about', [PagesController::class, 'about'])->name('web-setting.about');
     Route::post('web-setting/about/store', [PagesController::class, 'about_store'])->name('web-setting.about.store');
@@ -117,7 +123,10 @@ Route::middleware('domain')->group(function (){
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/category/{slug}', [HomeController::class,'serviceByCategory'])->name('category.services');
     Route::get('/service/{slug}', [HomeController::class,'serviceDetails'])->name('service_detail');
+    Route::get('/posts/{slug}', [HomeController::class,'single_post'])->name('single_post');
     Route::post('/order/store', [HomeController::class, 'order_store'])->name('order.store');
+
+    Route::get('posts', [HomeController::class, 'posts'])->name('posts');
 
     Route::post('/subscribe/store', [HomeController::class,'subscribeStore'])->name('subscribe.store');
 

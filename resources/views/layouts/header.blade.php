@@ -16,17 +16,7 @@
                     <li><a href="#review" class="page-scroll">Clients</a></li>
                     <li><a href="#about" class="page-scroll">About</a></li>
                     <li><a href="#contact" class="page-scroll">Contact</a></li>
-
-                    @if (Auth::check())
-                        @if(Auth::user()->role == 1)
-                            <li><a href="{{ route('admin.dashboard') }}" class="page-scroll color-primary">@lang('Dashboard')</a></li>
-                        @else
-                            <li><a href="{{ route('dashboard') }}" class="page-scroll color-primary">@lang('Dashboard')</a></li>
-                        @endif
-                    @else
-                        <li><a href="{{ route('login') }}" class="page-scroll color-primary">@lang('Login')</a></li>
-                    @endif
-
+                    <li><a href="{{ route('posts') }}" class="page-scroll">@lang('Blog')</a></li>
                 </ul>
             </div>
         </div>

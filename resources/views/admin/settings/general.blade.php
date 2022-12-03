@@ -14,61 +14,86 @@
                             $general = json_decode(settings('general'), true);
                         @endphp
                         <div class="row">
+
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>@lang('App URL')</label>
-                                    <input type="text" class="form-control" name="app_url" value="{{ $general['app_url'] }}">
+                                    <label>@lang('Facebook')</label>
+                                    <input type="text" class="form-control" name="facebook" value="{{ $general['facebook'] ?? '' }}">
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>@lang('Site name')</label>
-                                    <input type="text" class="form-control" name="site_name" value="{{ $general['site_name'] }}">
+                                    <label>@lang('Twitter')</label>
+                                    <input type="text" class="form-control" name="twitter" value="{{ $general['twitter'] ?? '' }}">
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>@lang('Site title')</label>
-                                    <input type="text" class="form-control" name="site_title" value="{{ $general['site_title'] }}">
+                                    <label>@lang('Instagram')</label>
+                                    <input type="text" class="form-control" name="instagram" value="{{ $general['instagram'] ?? '' }}">
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>@lang('Newslatter Text')</label>
-                                    <textarea class="form-control" name="newslatter_text">{!! $general['newslatter_text'] !!}</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>@lang('About Text')</label>
-                                    <textarea class="form-control" name="about_text">{!! $general['about_text'] !!}</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>@lang('Copyright Text')</label>
-                                    <input class="form-control" name="copyright_text" value="{{ $general['copyright_text'] }}" placeholder="Copyright text">
+                                    <label>@lang('Youtube')</label>
+                                    <input type="text" class="form-control" name="youtube" value="{{ $general['youtube'] ?? '' }}">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>@lang('Address')</label>
-                                    <input type="text" class="form-control" name="address" value="{{ $general['address'] }}">
+                                    <label>@lang('Email')</label>
+                                    <input type="email" class="form-control" name="email" value="{{ $general['email'] ?? '' }}">
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>@lang('Phone')</label>
-                                    <input type="text" class="form-control" name="phone" value="{{ $general['phone'] }}">
+                                    <input type="text" class="form-control" name="phone" value="{{ $general['phone'] ?? '' }}">
                                 </div>
+                            </div>
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>@lang('Email')</label>
-                                    <input type="email" class="form-control" name="email" value="{{ $general['email'] }}">
+                                    <label>@lang('Address')</label>
+                                    <input type="text" class="form-control" name="address" value="{{ $general['address'] ?? '' }}">
                                 </div>
+                            </div>
+
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>@lang('Facebook')</label>
-                                    <input type="text" class="form-control" name="facebook" value="{{ $general['facebook'] }}">
+                                    <label>@lang('Site title')</label>
+                                    <input type="text" class="form-control" name="site_title" value="{{ $general['site_title'] ?? '' }}">
                                 </div>
+                            </div>
+
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>@lang('Twitter')</label>
-                                    <input type="text" class="form-control" name="twitter" value="{{ $general['twitter'] }}">
+                                    <label>@lang('Meta Description')</label>
+                                    <textarea class="form-control" name="meta_description">{!! $general['meta_description'] ?? '' !!}</textarea>
                                 </div>
+                            </div>
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>@lang('Instagram')</label>
-                                    <input type="text" class="form-control" name="instagram" value="{{ $general['instagram'] }}">
+                                    <label>@lang('Newslatter Text')</label>
+                                    <textarea class="form-control" name="newslatter_text">{!! $general['newslatter_text'] ?? '' !!}</textarea>
                                 </div>
+                            </div>
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>@lang('Youtube')</label>
-                                    <input type="text" class="form-control" name="youtube" value="{{ $general['youtube'] }}">
+                                    <label>@lang('Footer Text')</label>
+                                    <textarea class="form-control" name="footer_text">{!! $general['footer_text'] ?? '' !!}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>@lang('Analytics Code')</label>
+                                    <textarea class="form-control" name="analytics_code">{!! $general['analytics_code'] ?? '' !!}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>@lang('Verification Code')</label>
+                                    <textarea class="form-control" name="verification">{!! $general['verification'] ?? '' !!}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +107,7 @@
         </div>
 
         <div class="col-md-4">
-            <form method="post" action="{{ route('admin.settings.logo_update') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('admin.settings.image_update') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="logo">@lang('logo 250x100')</label>
@@ -94,6 +119,38 @@
                     <input type="file" class="form-control" name="favicon">
                     <img src="{{ asset(get_path('favicon.png')) }}" alt="favicon" style="height: 50px; width: auto">
                 </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>@lang('About 750x750')</label>
+                            <input type="file" class="form-control" name="about">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="avatar avatar-lg">
+                                <img class="avatar-img" src="{{ asset(get_path('about.png')) }}" alt="User Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>@lang('Featured 750x500') </label>
+                            <input type="file" class="form-control" name="featured">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="avatar avatar-lg">
+                                <img class="avatar-img" src="{{ asset(get_path('featured.png')) }}" alt="User Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="text-right">
                     <button type="submit" class="btn btn-block btn-primary">@lang('Submit')</button>
                 </div>

@@ -10,7 +10,7 @@
                     <img src="{{ asset(get_path('logo.png')) }}" alt="logo" class="logo">
                 </a>
                 <br>
-                <p>{!! $general['about_text'] !!}</p>
+                <p>{!! $general['footer_text'] !!}</p>
                 <div class="list-inline social-list-default background-color social-hover-2 mt-2">
                     <li class="list-inline-item"><a class="facebook" href="{{ $general['facebook'] }}" target="_blank"><i class="fab fa-facebook"></i></a></li>
                     <li class="list-inline-item"><a class="twitter" href="{{ $general['twitter'] }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
@@ -21,6 +21,16 @@
             <div class="col-lg-3">
                 <h6 class="text-uppercase">Resources</h6>
                 <ul>
+                    <li><a href="{{ route('posts') }}">@lang('Our Blog')</a></li>
+                    @if (Auth::check())
+                        @if(Auth::user()->role == 1)
+                            <li><a href="{{ route('admin.dashboard') }}">@lang('Dashboard')</a></li>
+                        @else
+                            <li><a href="{{ route('dashboard') }}">@lang('Dashboard')</a></li>
+                        @endif
+                    @else
+                        <li><a href="{{ route('login') }}">@lang('My Account')</a></li>
+                    @endif
                     <li><a href="#about">@lang('About Us')</a></li>
                     <li><a href="#contact">@lang('Contact')</a></li>
                     <li><a href="{{ route('privacy-policy') }}">@lang('Privacy Policy')</a></li>
@@ -48,7 +58,7 @@
             <div class="row">
                 <div class="col-md-6 col-lg-7">
                     <div class="copyright-wrap small-text">
-                        <p class="mb-0">{{ $general['copyright_text'] .' Developed by ' }}<a href="https://github.com/ashik-ahmed-dev" target="_blank" class="color-primary">Ashik Ahmed</a></p>
+                        <p class="mb-0">2022 © Citysun Developed by <a href="https://github.com/ashik-ahmed-dev" target="_blank" class="color-primary">Ashik Ahmed</a></p>
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@
         </div>
     </section>
 
-    <!--blog section start-->
+    <!--posts section start-->
     <section class="our-blog-section pt-5 pb-5">
         <div class="container">
             <div class="row">
@@ -54,6 +54,6 @@
             <!--pagination end-->
         </div>
     </section>
-    <!--blog section end-->
+    <!--posts section end-->
 
 @endsection

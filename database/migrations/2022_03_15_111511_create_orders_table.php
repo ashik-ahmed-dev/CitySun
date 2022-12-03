@@ -15,8 +15,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('service_id');
+
+
             $table->float('service_price');
             $table->string('type')->nullable();
             $table->string('payment_number')->nullable();
@@ -27,6 +27,15 @@ class CreateOrdersTable extends Migration
             $table->text('address')->nullable();
             $table->text('note')->nullable();
             $table->string('status')->default('pending');
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained('users')
+                ->onDelete('cascade');
+
+            $table->foreignId('service_id')
+                ->nullable()
+                ->constrained('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

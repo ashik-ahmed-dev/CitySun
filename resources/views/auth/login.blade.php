@@ -26,7 +26,7 @@
                 @endif
             </div>
             <a href="{{ url('/') }}">
-                <img class="img-fluid logo-dark mb-2" src="{{ asset('storage/logo.webp') }}" alt="Logo">
+                <img class="img-fluid logo-dark mb-2" src="{{ asset(get_path('logo.png')) }}" alt="Logo">
             </a>
             <div class="loginbox">
                 <div class="login-right">
