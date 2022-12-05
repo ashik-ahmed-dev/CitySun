@@ -52,7 +52,8 @@
                                     </td>
                                     <td class="text-right">
                                         <a href="{{ route('admin.order.running.update', $order->id) }}" class="btn btn-sm btn-white text-success me-2">@lang('Closed')</a>
-                                        <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-sm btn-white text-success me-2">@lang('Edit')</a>
+                                        <a href="{{ route('admin.order.print', $order->id) }}" class="btn btn-sm btn-white text-danger me-2">@lang('Print')</a>
+                                        <a href="{{ route('admin.order.pdf', $order->id) }}" class="btn btn-sm btn-white text-danger me-2">@lang('PDF')</a>
                                     </td>
                                 </tr>
                             @endforeach

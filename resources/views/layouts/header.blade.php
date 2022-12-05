@@ -17,6 +17,15 @@
                     <li><a href="#about" class="page-scroll">About</a></li>
                     <li><a href="#contact" class="page-scroll">Contact</a></li>
                     <li><a href="{{ route('posts') }}" class="page-scroll">@lang('Blog')</a></li>
+                    @if (Auth::check())
+                        @if(Auth::user()->role == 1)
+                            <li><a href="{{ route('admin.dashboard') }}" class="login-button">@lang('Dashboard')</a></li>
+                        @else
+                            <li><a href="{{ route('dashboard') }}" class="login-button">@lang('Dashboard')</a></li>
+                        @endif
+                    @else
+                        <li><a href="{{ route('login') }}" class="login-button">@lang('Login')</a></li>
+                    @endif
                 </ul>
             </div>
         </div>

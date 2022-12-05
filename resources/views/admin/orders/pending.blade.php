@@ -9,6 +9,9 @@
                         <div class="col">
                             <h3 class="page-title">@lang('Pending Orders')</h3>
                         </div>
+                        <div class="col-auto">
+                            <a href="{{ route('admin.orders.export.pending') }}" class="btn btn-outline-primary"> Export</a>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -51,7 +54,7 @@
                                         @endif
                                     </td>
                                     <td class="text-right">
-                                        <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-sm btn-white text-success me-2">@lang('Edit')</a>
+                                        <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-sm btn-white text-success me-2">@lang('View')</a>
                                         <a href="{{ route('admin.order.delete', $order->id) }}" class="btn btn-sm btn-white text-danger me-2">@lang('Delete')</a>
                                     </td>
                                 </tr>

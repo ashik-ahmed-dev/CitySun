@@ -10,7 +10,7 @@
                             <h3 class="page-title">@lang('Orders')</h3>
                         </div>
                         <div class="col-auto">
-                            <a href="{{ route('admin.export') }}" class="btn btn-outline-primary"> Export</a>
+                            <a href="{{ route('admin.orders.export') }}" class="btn btn-outline-primary"> Export</a>
                         </div>
                     </div>
                 </div>

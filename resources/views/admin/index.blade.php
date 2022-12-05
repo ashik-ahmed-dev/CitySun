@@ -73,7 +73,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-sm-6">
+        <div class="col-md-12 col-sm-12">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
@@ -81,7 +81,7 @@
                             <h5 class="card-title">@lang('Pending Order')</h5>
                         </div>
                         <div class="col-auto">
-                            <a href="{{ route('admin.order') }}" class="btn-right btn btn-sm btn-outline-primary">@lang('View All')</a>
+                            <a href="{{ route('admin.order.pending') }}" class="btn-right btn btn-sm btn-outline-primary">@lang('View All')</a>
                         </div>
                     </div>
                 </div>
@@ -94,12 +94,13 @@
                                 <th>@lang('Email')</th>
                                 <th>@lang('Phone')</th>
                                 <th>@lang('Address')</th>
-                                <th class="text-right">@lang('Status')</th>
+                                <th>@lang('Status')</th>
+                                <th class="text-right">@lang('Action')</th>
                             </tr>
                             </thead>
                             <tbody>
                             @php
-                                $orders = \App\Models\Order::latest()->limit(10)->get();
+                                $orders = \App\Models\Order::pending()->latest()->limit(10)->get();
                             @endphp
                             @if($orders->count()>0)
                                 @foreach($orders as $order)
@@ -121,6 +122,9 @@
                                                 <span class="badge badge-pill bg-warning-light">@lang('Pending')</span>
                                             @endif
                                         </td>
+                                        <td class="text-right">
+                                            <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-sm btn-white text-success me-2">@lang('View')</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             @else
@@ -132,7 +136,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-sm-6">
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
@@ -151,24 +158,24 @@
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="thead-light">
-                                <tr>
-                                    <th>@lang('Name')</th>
-                                    <th>@lang('Email')</th>
-                                    <th>@lang('Subject')</th>
-                                    <th>@lang('Message')</th>
-                                </tr>
+                            <tr>
+                                <th>@lang('Name')</th>
+                                <th>@lang('Email')</th>
+                                <th>@lang('Subject')</th>
+                                <th>@lang('Message')</th>
+                            </tr>
                             </thead>
                             <tbody>
                             @if($contact->count()>0)
                                 @foreach($contact as $list)
-                                <tr>
-                                    <td>{{ $list->name }}</td>
-                                    <td>{{ $list->email }}</td>
-                                    <td>{{ $list->subject }}</td>
-                                    <td>{{ $list->message }}</td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ $list->name }}</td>
+                                        <td>{{ $list->email }}</td>
+                                        <td>{{ $list->subject }}</td>
+                                        <td>{{ $list->message }}</td>
+                                    </tr>
                                 @endforeach
-                                @else
+                            @else
                                 <strong>No Contact</strong>
                             @endif
                             </tbody>

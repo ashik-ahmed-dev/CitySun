@@ -11,9 +11,19 @@
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <div class="col-md-6 col-lg-6">
-                    <div class="hero-content-left pt-5">
+                    <div class="hero-content-left">
                         <h1 class="font-weight-bold">{{ $slider['title'] }}</h1>
                         <p class="lead">{{ $slider['subtitle'] }}</p>
+                        <div class="action-btns mt-4">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a href="tel:{{ $general['phone'] }}" class="d-flex align-items-center btn btn-brand-02 btn-rounded">
+                                        <strong>Call Now: {{ $general['phone'] }}</strong>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-6">

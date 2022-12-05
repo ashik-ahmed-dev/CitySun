@@ -45,7 +45,7 @@
                                                         <tbody>
                                                         @foreach($order as $list)
                                                             <tr>
-                                                                <td><img src="{{ asset($list->service->thumbnail) }}" alt="User Image" style="height: 40px; width: auto"></td>
+                                                                <td><img src="{{ asset(get_path($list->service->thumbnail)) }}" alt="User Image" style="height: 40px; width: auto"></td>
                                                                 <td>{{ $list->service->name }}</td>
                                                                 <td>{{ $list->service_price }}</td>
                                                                 <td>{{ $list->created_at->format('d F, Y') }}</td>

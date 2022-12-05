@@ -303,6 +303,10 @@ button {
     border-radius: 0;
 }
 
+a.login-button {
+    color: #f9a22b !important;
+}
+
 /* line 310, node_modules/bootstrap/scss/_reboot.scss */
 button:focus {
     outline: 1px dotted;

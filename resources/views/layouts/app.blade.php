@@ -1,16 +1,22 @@
 @php
     $general = json_decode(settings('general'), true);
 @endphp
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--title-->
+    <title>{{ seo('title') }}</title>
+    <meta name="description" content="{{ seo('description') }}" />
+    <meta property="og:url" content="{{ url('/') }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ seo('title') }}" />
+    <meta property="og:description" content="{{ seo('description') }}" />
+    <meta property="og:image" content="{{ url(seo('image')) }}" />
     <!--favicon icon-->
     <link rel="icon" href="{{ asset(get_path('favicon.png')) }}" type="image/png">
-    <!--title-->
-    <title>{{ $general['site_title'] }}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/toastr/toastr.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/toastr/ext-component-toastr.min.css') }}">
     <!--build:css-->

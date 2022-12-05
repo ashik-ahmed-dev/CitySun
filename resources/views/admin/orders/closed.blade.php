@@ -52,7 +52,7 @@
                                     </td>
                                     <td class="text-right">
                                         <a href="{{ route('admin.order.print', $order->id) }}" class="btn btn-sm btn-white text-success me-2">@lang('Print')</a>
-                                        <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-sm btn-white text-success me-2">@lang('View')</a>
+                                        <a href="{{ route('admin.order.show', $order->id) }}" class="btn btn-sm btn-white text-success me-2">@lang('View')</a>
                                     </td>
                                 </tr>
                             @endforeach

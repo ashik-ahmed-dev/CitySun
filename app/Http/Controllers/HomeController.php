@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Mail\OrderSend;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Order;
@@ -12,15 +11,19 @@ use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 
 class HomeController extends Controller
 {
     public function index(){
+        $general = json_decode(settings('general'), true);
         $categories = Category::latest()->orderBy('created_at','desc')->get();
-        $testi = Testimonial::latest()->orderBy('created_at','desc')->get();
+        $testi = Testimonial::latest()->orderBy('created_at','desc')->get();seo()
+            ->title($general['site_title'])
+            ->description($general['meta_description'])
+            ->image(get_path('favicon.png'));
         return view('home', compact('categories', 'testi'));
     }
 
@@ -28,11 +31,19 @@ class HomeController extends Controller
     public function serviceByCategory($slug){
         $category = Category::where('slug',$slug)->first();
         $services = $category->services()->paginate(6);
+        seo()
+            ->title($category->name)
+            ->description('')
+            ->image('');
         return view('category_services', compact('services', 'category'));
     }
 
     public function serviceDetails($slug){
         $service = Service::with('category')->where('slug',$slug)->first();
+        seo()
+            ->title($service->name)
+            ->description(Str::limit($service->short_text, 140))
+            ->image('');
         return view('services.details', compact('service'));
     }
 
@@ -66,6 +77,10 @@ class HomeController extends Controller
     }
 
     public function contact(){
+        seo()
+            ->title('Our Contact')
+            ->description('')
+            ->image('');
         return view('contact');
     }
 
@@ -88,18 +103,34 @@ class HomeController extends Controller
     }
 
     public function about(){
+        seo()
+            ->title('About Us')
+            ->description('')
+            ->image('');
         return view('about');
     }
 
     public function faq(){
+        seo()
+            ->title('FAQ')
+            ->description('')
+            ->image('');
         return view('faq');
     }
 
     public function terms(){
+        seo()
+            ->title('Terms & Conditions')
+            ->description('')
+            ->image('');
         return view('terms');
     }
 
     public function privacy_policy(){
+        seo()
+            ->title('Privacy Policy')
+            ->description('')
+            ->image('');
         return view('privacy-policy');
     }
 
@@ -128,13 +159,21 @@ class HomeController extends Controller
 
 
     public function posts(){
-        $title = 'Our posts';
+        seo()
+            ->title('Our Latest blog')
+            ->description('')
+            ->image('');
         $posts = Post::latest()->paginate(6);
-        return view('posts', compact('title', 'posts'));
+        return view('posts', compact( 'posts'));
     }
 
     public function single_post($slug){
+
         $post = Post::where('slug',$slug)->first();
+        seo()
+            ->title($post->title)
+            ->description(Str::limit($post->meta_description, 140))
+            ->image($post->image);
         return view('single_post', compact('post'));
     }
 

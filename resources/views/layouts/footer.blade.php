@@ -22,15 +22,6 @@
                 <h6 class="text-uppercase">Resources</h6>
                 <ul>
                     <li><a href="{{ route('posts') }}">@lang('Our Blog')</a></li>
-                    @if (Auth::check())
-                        @if(Auth::user()->role == 1)
-                            <li><a href="{{ route('admin.dashboard') }}">@lang('Dashboard')</a></li>
-                        @else
-                            <li><a href="{{ route('dashboard') }}">@lang('Dashboard')</a></li>
-                        @endif
-                    @else
-                        <li><a href="{{ route('login') }}">@lang('My Account')</a></li>
-                    @endif
                     <li><a href="#about">@lang('About Us')</a></li>
                     <li><a href="#contact">@lang('Contact')</a></li>
                     <li><a href="{{ route('privacy-policy') }}">@lang('Privacy Policy')</a></li>

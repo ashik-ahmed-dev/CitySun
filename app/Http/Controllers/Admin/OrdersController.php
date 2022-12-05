@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\OrdersExport;
+use App\Exports\PendingOrdersExport;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Service;
@@ -9,6 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrdersController extends Controller
 {
@@ -129,6 +132,22 @@ class OrdersController extends Controller
         $order = Order::with('service')->where('id',$id)->first();
         $pdf = Pdf::loadView('admin.orders.pdf', compact('order'));
         return $pdf->download('invoice.pdf');
+    }
+
+    public function show($id){
+        $title = 'Order Details';
+        $order = Order::findOrFail($id);
+        return view('admin.orders.view', compact('order', 'title'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new OrdersExport, 'orders.xlsx');
+    }
+
+    public function exportPending()
+    {
+        return Excel::download(new PendingOrdersExport(), 'pending-orders.xlsx');
     }
 
 }
