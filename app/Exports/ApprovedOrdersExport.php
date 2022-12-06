@@ -8,13 +8,13 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class PendingOrdersExport implements FromQuery, WithHeadings, WithMapping
+class ApprovedOrdersExport implements FromQuery, WithHeadings, WithMapping
 {
     use Exportable;
 
     public function query()
     {
-        return Order::query()->pending();
+        return Order::query()->approved();
     }
 
     public function headings(): array{

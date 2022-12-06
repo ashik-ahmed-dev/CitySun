@@ -9,6 +9,9 @@
                         <div class="col">
                             <h3 class="page-title">@lang('Approved Orders')</h3>
                         </div>
+                        <div class="col-auto">
+                            <a href="{{ route('admin.orders.export.approved') }}" class="btn btn-outline-primary"> Export</a>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">

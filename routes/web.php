@@ -83,8 +83,13 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::get('/order/print/{id}', [OrdersController::class, 'print'])->name('order.print');
     Route::get('/order/pdf/{id}', [OrdersController::class, 'pdf_download'])->name('order.pdf');
 
+
+    // Orders Export route
     Route::get('/orders/export/', [OrdersController::class, 'export'])->name('orders.export');
     Route::get('/orders/export/pending', [OrdersController::class, 'exportPending'])->name('orders.export.pending');
+    Route::get('/orders/export/approved', [OrdersController::class, 'exportApproved'])->name('orders.export.approved');
+    Route::get('/orders/export/running', [OrdersController::class, 'exportRunning'])->name('orders.export.running');
+    Route::get('/orders/export/closed', [OrdersController::class, 'exportClosed'])->name('orders.export.closed');
 
     Route::get('/slider', [SliderController::class, 'index'])->name('slider');
     Route::post('/slider/update', [SliderController::class, 'update'])->name('slider.update');

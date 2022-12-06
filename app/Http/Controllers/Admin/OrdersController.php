@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ApprovedOrdersExport;
+use App\Exports\ClosedOrdersExport;
 use App\Exports\OrdersExport;
 use App\Exports\PendingOrdersExport;
+use App\Exports\RunningOrdersExport;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Service;
@@ -148,6 +151,18 @@ class OrdersController extends Controller
     public function exportPending()
     {
         return Excel::download(new PendingOrdersExport(), 'pending-orders.xlsx');
+    }
+
+    public function exportApproved(){
+        return Excel::download(new ApprovedOrdersExport(), 'approved-orders.xlsx');
+    }
+
+    public function exportRunning(){
+        return Excel::download(new RunningOrdersExport(), 'running-orders.xlsx');
+    }
+
+    public function exportClosed(){
+        return Excel::download(new ClosedOrdersExport(), 'closed-orders.xlsx');
     }
 
 }
